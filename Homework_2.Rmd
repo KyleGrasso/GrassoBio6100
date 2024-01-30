@@ -1,0 +1,11 @@
+---
+title: "Homework_2"
+author: "Kyle Grasso"
+date: "2024-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+This site is to satisfy the requirements for Bio 6100 Homework #2.

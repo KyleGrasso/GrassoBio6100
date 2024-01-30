@@ -1,7 +1,7 @@
 ---
 title: "Kyle Grasso's Bio 6100 Portfolio"
 author: "Kyle Grasso"
-date: "1/30/2024"
+date: "2024-01-30"
 output: html_document
 ---
 
@@ -9,3 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Purpose:
+The site will serve as Kyle Grasso's Bio 6100 Portfolio for Spring 2024.
+
+## Homework #2:
+Here is the link for Homework #2:
