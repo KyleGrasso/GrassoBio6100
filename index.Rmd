@@ -15,3 +15,6 @@ This site will serve as Kyle Grasso's Bio 6100 Portfolio for Spring 2024.
 ## Homework #2:
 Here is the link for Homework #2: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_2.html)
 
+## Homework #3:
+Here is the link for Homework #3: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_3.html)
+
