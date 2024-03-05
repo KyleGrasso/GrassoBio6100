@@ -11,9 +11,9 @@
 
 <meta name="author" content="Kyle Grasso" />
 
-<meta name="date" content="2024-01-24" />
+<meta name="date" content="2024-02-07" />
 
-<title>Kyle Grasso’s Bio 6100 Portfolio</title>
+<title>Homework_4</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,40 +350,124 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Kyle Grasso’s Bio 6100 Portfolio</h1>
+<h1 class="title toc-ignore">Homework_4</h1>
 <h4 class="author">Kyle Grasso</h4>
-<h4 class="date">2024-01-24</h4>
+<h4 class="date">2024-02-07</h4>
 
 </div>
 
 
-<div id="purpose" class="section level3">
-<h3>Purpose:</h3>
-<div id="this-site-will-serve-as-kyle-grassos-bio-6100-portfolio-for-spring-2024." class="section level5">
-<h5>This site will serve as Kyle Grasso’s Bio 6100 Portfolio for Spring
-2024.</h5>
+<div id="question-1a" class="section level3">
+<h3>Question 1a:</h3>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3
+
+z &lt;- x^(a^b)
+print(z)</code></pre>
+<pre><code>## [1] 3.61714</code></pre>
 </div>
+<div id="question-1b" class="section level3">
+<h3>Question 1b:</h3>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3
+
+z &lt;- (x^a)^b
+print(z)</code></pre>
+<pre><code>## [1] 1.997611</code></pre>
 </div>
-<div id="homework-2" class="section level3">
-<h3>Homework #2:</h3>
-<div id="click-here-for-homework-2" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_2.html">Click
-here</a> for Homework #2</h5>
+<div id="question-1c" class="section level3">
+<h3>Question 1c:</h3>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3
+
+z &lt;- 3*x^3+2*x^2+1
+print(z)</code></pre>
+<pre><code>## [1] 7.413</code></pre>
 </div>
+<div id="question-2a" class="section level3">
+<h3>Question 2a:</h3>
+<pre class="r"><code>c(seq(1,8),seq(7,1))</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
 </div>
-<div id="homework-3" class="section level3">
-<h3>Homework #3:</h3>
-<div id="click-here-for-homework-3" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_3.html">Click
-here</a> for Homework #3</h5>
+<div id="question-2b" class="section level3">
+<h3>Question 2b:</h3>
+<pre class="r"><code>my_vec &lt;- seq(1,5)
+rep(x=my_vec,times=my_vec)</code></pre>
+<pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
 </div>
+<div id="question-2c" class="section level3">
+<h3>Question 2c:</h3>
+<pre class="r"><code>my_vec1 &lt;- seq(1,5)
+my_vec2 &lt;- seq(5,1)
+rep(x=my_vec2,times=my_vec1)</code></pre>
+<pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
 </div>
-<div id="homework-4" class="section level3">
-<h3>Homework #4:</h3>
-<div id="click-here-for-homework-4" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_4.html">Click
-here</a> for Homework #4</h5>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<pre class="r"><code>coord &lt;- runif(2)
+polar_coord &lt;- c(sqrt(coord[1]^2+coord[2]^2),atan(coord[2]/coord[1]))
+print(polar_coord)</code></pre>
+<pre><code>## [1] 0.7866833 0.2120234</code></pre>
 </div>
+<div id="question-4a" class="section level3">
+<h3>Question 4a:</h3>
+<pre class="r"><code>#the serpent arrives and gets in line
+queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+queue[5] &lt;- &quot;serpent&quot;
+print(queue)</code></pre>
+<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4b" class="section level3">
+<h3>Question 4b:</h3>
+<pre class="r"><code>#the sheep enters the ark
+queue &lt;- queue[-1]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4c" class="section level3">
+<h3>Question 4c:</h3>
+<pre class="r"><code>#the donkey arrives and talks his way to the front of the line
+queue &lt;- c(&quot;donkey&quot;,queue)
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+</div>
+<div id="question-4d" class="section level3">
+<h3>Question 4d:</h3>
+<pre class="r"><code>#the serpent gets impatient and leaves
+queue &lt;- queue[-length(queue)]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4e" class="section level3">
+<h3>Question 4e:</h3>
+<pre class="r"><code>#the owl gets bored and leaves
+queue &lt;- queue[-which(queue == &quot;owl&quot;)]
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4f" class="section level3">
+<h3>Question 4f:</h3>
+<pre class="r"><code>#the aphid arrives and the ant invites him to cut in line
+queue &lt;- c(queue[1:2],&quot;aphid&quot;,queue[3])
+print(queue)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
+</div>
+<div id="question-4g" class="section level3">
+<h3>Question 4g:</h3>
+<pre class="r"><code>#Finally, determine the position of the aphid in the line.
+which(queue == &quot;aphid&quot;)</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="question-5" class="section level3">
+<h3>Question 5:</h3>
+<pre class="r"><code>temp_vec &lt;- 1:100
+final_vec &lt;- which((temp_vec%%2 != 0) &amp; (temp_vec%%3 != 0) &amp; (temp_vec%%7 != 0))
+print(final_vec)</code></pre>
+<pre><code>##  [1]  1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85
+## [26] 89 95 97</code></pre>
 </div>
 
 

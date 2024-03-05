@@ -357,61 +357,79 @@ display: none;
 </div>
 
 
-<ol style="list-style-type: decimal">
-<li><pre><code>Find:\s{2,}
+<div id="question-1" class="section level3">
+<h3>Question 1:</h3>
+<pre><code>Find:\s{2,}
 
-Replace:,
-</code></pre>
+Replace:,</code></pre>
 <p>This regular expression finds sections of the text that contain 2 or
-more spaces and then it replaces them with a comma.</p></li>
-<li><pre><code>Find:(\w+), (\w+), (.*)
+more spaces and then it replaces them with a comma.</p>
+</div>
+<div id="question-2" class="section level3">
+<h3>Question 2:</h3>
+<pre><code>Find:(\w+), (\w+), (.*)
 
 Replace:\2 \1 (\3)</code></pre>
 <p>This regular expression captures the last name using the first (\w+),
 the first name using the second (\w+), and the school name using the
 (.*). Then it uses those captures to restructure the list in the desired
-format of Bryan Ballif (University of Vermont).</p></li>
-<li><pre><code>Find:.mp3\s
+format of Bryan Ballif (University of Vermont).</p>
+</div>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<pre><code>Find:.mp3\s
 
 Replace:.mp3\n</code></pre>
 <p>This regular expression finds every instance of a space after “.mp3”
 and replaces the space with a line break to create a line for each
-song.</p></li>
-<li><pre><code>Find:(\d{4})\s(.*)(.mp3)
-
+song.</p>
+</div>
+<div id="question-4" class="section level3">
+<h3>Question 4:</h3>
+<pre><code>Find:(\d{4})\s(.*)(.mp3)
+   
 Replace:\2_\1\3</code></pre>
 <p>This regular expression captures the four digit number using the
 (\d{4}), the text after the number and before the “.mp3” using the (.*),
 and the “.mp3” using the (.mp3). Then it restructures these captures
 into the desired format with the “_” in between the track name and the
-four digit number.</p></li>
-<li><pre><code>Find:(\w)\w+,(\w+),\d+.\d,(\d+)
-
+four digit number.</p>
+</div>
+<div id="question-5" class="section level3">
+<h3>Question 5:</h3>
+<pre><code>Find:(\w)\w+,(\w+),\d+.\d,(\d+)
+  
 Replace:\1_\2,\3</code></pre>
 <p>This regular expression captures the first letter of the genus and
 avoids the rest using the (\w)\w+. Then the entire species name is
 captured using the (\w+). The first numeric variable is found using
 \d+.\d, and the second numeric variable is captured using the (\d+).
 Then it restructures these captures into the desired format of
-C_pennsylvanicus,44.</p></li>
-<li><pre><code>Find:(\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
-
+C_pennsylvanicus,44.</p>
+</div>
+<div id="question-6" class="section level3">
+<h3>Question 6:</h3>
+<pre><code>Find:(\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
+     
 Replace:\1_\2,\3</code></pre>
 <p>This regular expression captures the first letter of the genus like
 in Question #5. However in Question #6, we only want to capture the
 first four letters of the species name, not the entire species name.
 This is done using (\w{4})\w+. The second numeric variable is again
 captured like in Question #5. Then it restructures these captures into
-the desired format of C_penn,44.</p></li>
-<li><pre><code>Find:(\w{3})\w+,(\w{3})\w+,(\d+.\d),(\d+)
-
+the desired format of C_penn,44.</p>
+</div>
+<div id="question-7" class="section level3">
+<h3>Question 7:</h3>
+<pre><code>Find:(\w{3})\w+,(\w{3})\w+,(\d+.\d),(\d+)
+     
 Replace:\1\2, \4, \3</code></pre>
 <p>This regular expression captures the first three letters of the genus
 using (\w{3})\w+, the first 3 letters of the species using (\w{3})\w+,
 the first numeric variable using (\d+.\d), and then the second numeric
 variable using (\d+). Then it restructures these captures into the
-desired format of Campen, 44, 10.2.</p></li>
-</ol>
+desired format of Campen, 44, 10.2.</p>
+</div>
 
 
 

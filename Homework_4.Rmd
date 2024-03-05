@@ -1,0 +1,123 @@
+---
+title: "Homework_4"
+author: "Kyle Grasso"
+date: "2024-02-07"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Question 1a:
+```{r, eval=TRUE}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+z <- x^(a^b)
+print(z)
+```
+
+### Question 1b:
+```{r, eval=TRUE}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+z <- (x^a)^b
+print(z)
+```
+
+### Question 1c:
+```{r, eval=TRUE}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+z <- 3*x^3+2*x^2+1
+print(z)
+```
+
+### Question 2a:
+```{r, eval=TRUE}
+c(seq(1,8),seq(7,1))
+```
+
+### Question 2b:
+```{r, eval=TRUE}
+my_vec <- seq(1,5)
+rep(x=my_vec,times=my_vec)
+```
+
+### Question 2c:
+```{r, eval=TRUE}
+my_vec1 <- seq(1,5)
+my_vec2 <- seq(5,1)
+rep(x=my_vec2,times=my_vec1)
+```
+
+### Question 3:
+```{r, eval=TRUE}
+coord <- runif(2)
+polar_coord <- c(sqrt(coord[1]^2+coord[2]^2),atan(coord[2]/coord[1]))
+print(polar_coord)
+```
+
+### Question 4a:
+```{r, eval=TRUE}
+#the serpent arrives and gets in line
+queue <- c("sheep", "fox", "owl", "ant")
+queue[5] <- "serpent"
+print(queue)
+```
+
+### Question 4b:
+```{r, eval=TRUE}
+#the sheep enters the ark
+queue <- queue[-1]
+print(queue)
+```
+
+### Question 4c:
+```{r, eval=TRUE}
+#the donkey arrives and talks his way to the front of the line
+queue <- c("donkey",queue)
+print(queue)
+```
+
+### Question 4d:
+```{r, eval=TRUE}
+#the serpent gets impatient and leaves
+queue <- queue[-length(queue)]
+print(queue)
+```
+
+### Question 4e:
+```{r, eval=TRUE}
+#the owl gets bored and leaves
+queue <- queue[-which(queue == "owl")]
+print(queue)
+```
+
+### Question 4f:
+```{r, eval=TRUE}
+#the aphid arrives and the ant invites him to cut in line
+queue <- c(queue[1:2],"aphid",queue[3])
+print(queue)
+```
+
+### Question 4g:
+```{r, eval=TRUE}
+#Finally, determine the position of the aphid in the line.
+which(queue == "aphid")
+```
+
+### Question 5:
+```{r, eval=TRUE}
+temp_vec <- 1:100
+final_vec <- which((temp_vec%%2 != 0) & (temp_vec%%3 != 0) & (temp_vec%%7 != 0))
+print(final_vec)
+```

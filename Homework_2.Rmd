@@ -8,4 +8,4 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-This site is to satisfy the requirements for Bio 6100 Homework #2.
+### This site is to satisfy the requirements for Bio 6100 Homework #2.

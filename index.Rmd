@@ -10,11 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### Purpose:
-This site will serve as Kyle Grasso's Bio 6100 Portfolio for Spring 2024.
+##### This site will serve as Kyle Grasso's Bio 6100 Portfolio for Spring 2024.
 
 ### Homework #2:
-Here is the link for Homework #2: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_2.html)
+##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_2.html) for Homework #2
 
 ### Homework #3:
-Here is the link for Homework #3: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_3.html)
+##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_3.html) for Homework #3
 
+### Homework #4:
+##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_4.html) for Homework #4
