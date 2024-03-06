@@ -1,0 +1,104 @@
+---
+title: "Homework_5"
+author: "Kyle Grasso"
+date: "2024-02-14"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Question 1:
+```{r,eval=TRUE}
+n_dims <- sample(3:10,size=1) # random integer between 3-10
+print(n_dims)
+
+my_seq <- 1:n_dims^2 # sequence from 1 to n_dims^2
+print(my_seq)
+
+seq_shuffle <- sample(x=my_seq) # randomly reshuffle these values
+print(seq_shuffle)
+
+seq_matrix <- matrix(data=seq_shuffle,nrow=n_dims) # creating a square matrix with these values
+print(seq_matrix)
+
+```
+
+Transposing a matrix swaps the rows with the columns
+
+```{r,eval=TRUE}
+transpose_matrix <- t(seq_matrix) # transposing this matrix
+print(transpose_matrix)
+
+sum(transpose_matrix[1,]) # sum of first row
+mean(transpose_matrix[1,]) # mean of first row
+
+sum(transpose_matrix[n_dims,]) # sum of last row
+mean(transpose_matrix[n_dims,]) # mean of last row
+
+eigen(transpose_matrix) # using eigen()
+eigen(transpose_matrix)$values # looking at $values
+eigen(transpose_matrix)$vectors # looking at $vectors 
+
+typeof(eigen(transpose_matrix)$values) # type of $values
+typeof(eigen(transpose_matrix)$vectors) # type of $vectors
+
+```
+
+### Question 2:
+```{r,eval=TRUE}
+my_matrix <- matrix(data=runif(16),nrow=4) # creating my_matrix
+print(my_matrix)
+
+my_logical <- runif(100)<0.5 # creating my_logical
+print(my_logical)
+
+my_letters <- sample(letters) # creating my_letters
+print(my_letters)
+
+my_list <- list(my_matrix,my_logical,my_letters) # creating my_list
+print(my_list)
+
+new_list <- list(my_matrix[2,2],my_logical[2],my_letters[2]) # creating new list
+print(new_list)
+
+typeof(new_list[[1]])
+typeof(new_list[[2]])
+typeof(new_list[[3]])
+
+atomic_vec <- c(new_list[[1]], new_list[[2]], new_list[[3]])
+print(atomic_vec)
+typeof(atomic_vec)
+```
+
+### Question 3:
+```{r,eval=TRUE}
+my_unis <- sample(0:10,size=26,replace=TRUE) # create my_unis
+print(my_unis)
+
+my_letters <- sample(LETTERS) # create my_letters
+print(my_letters)
+
+my_df <- data.frame(my_unis,my_letters) # create dataframe
+print(my_df)
+
+my_df[sample(1:nrow(my_df),size=4),1] = NA # replace 4 random rows of my_unis with NA
+print(my_df)
+
+which(is.na(my_df$my_unis)) # which rows in my_unis have missing values
+```
+
+```{r,include=FALSE}
+library(dplyr)
+```
+
+```{r,eval=TRUE}
+new_df <- arrange(my_df,my_letters) # rearrange the dataframe alphabetically
+print(new_df)
+
+mean(new_df$my_unis,na.rm=TRUE) # calculate the mean for the first variable after removing NAs
+
+```

@@ -11,9 +11,9 @@
 
 <meta name="author" content="Kyle Grasso" />
 
-<meta name="date" content="2024-01-24" />
+<meta name="date" content="2024-02-14" />
 
-<title>Kyle Grasso’s Bio 6100 Portfolio</title>
+<title>Homework_5</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,47 +350,237 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Kyle Grasso’s Bio 6100 Portfolio</h1>
+<h1 class="title toc-ignore">Homework_5</h1>
 <h4 class="author">Kyle Grasso</h4>
-<h4 class="date">2024-01-24</h4>
+<h4 class="date">2024-02-14</h4>
 
 </div>
 
 
-<div id="purpose" class="section level3">
-<h3>Purpose:</h3>
-<div id="this-site-will-serve-as-kyle-grassos-bio-6100-portfolio-for-spring-2024." class="section level5">
-<h5>This site will serve as Kyle Grasso’s Bio 6100 Portfolio for Spring
-2024.</h5>
+<div id="question-1" class="section level3">
+<h3>Question 1:</h3>
+<pre class="r"><code>n_dims &lt;- sample(3:10,size=1) # random integer between 3-10
+print(n_dims)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>my_seq &lt;- 1:n_dims^2 # sequence from 1 to n_dims^2
+print(my_seq)</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
+<pre class="r"><code>seq_shuffle &lt;- sample(x=my_seq) # randomly reshuffle these values
+print(seq_shuffle)</code></pre>
+<pre><code>## [1] 9 5 6 4 1 8 2 7 3</code></pre>
+<pre class="r"><code>seq_matrix &lt;- matrix(data=seq_shuffle,nrow=n_dims) # creating a square matrix with these values
+print(seq_matrix)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    9    4    2
+## [2,]    5    1    7
+## [3,]    6    8    3</code></pre>
+<p>Transposing a matrix swaps the rows with the columns</p>
+<pre class="r"><code>transpose_matrix &lt;- t(seq_matrix) # transposing this matrix
+print(transpose_matrix)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    9    5    6
+## [2,]    4    1    8
+## [3,]    2    7    3</code></pre>
+<pre class="r"><code>sum(transpose_matrix[1,]) # sum of first row</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>mean(transpose_matrix[1,]) # mean of first row</code></pre>
+<pre><code>## [1] 6.666667</code></pre>
+<pre class="r"><code>sum(transpose_matrix[n_dims,]) # sum of last row</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>mean(transpose_matrix[n_dims,]) # mean of last row</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>eigen(transpose_matrix) # using eigen()</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 14.931570 -5.558319  3.626749
+## 
+## $vectors
+##           [,1]         [,2]       [,3]
+## [1,] 0.7927761  0.005446303  0.8191681
+## [2,] 0.4583392 -0.774669397 -0.2789202
+## [3,] 0.4017851  0.632342994 -0.5011657</code></pre>
+<pre class="r"><code>eigen(transpose_matrix)$values # looking at $values</code></pre>
+<pre><code>## [1] 14.931570 -5.558319  3.626749</code></pre>
+<pre class="r"><code>eigen(transpose_matrix)$vectors # looking at $vectors </code></pre>
+<pre><code>##           [,1]         [,2]       [,3]
+## [1,] 0.7927761  0.005446303  0.8191681
+## [2,] 0.4583392 -0.774669397 -0.2789202
+## [3,] 0.4017851  0.632342994 -0.5011657</code></pre>
+<pre class="r"><code>typeof(eigen(transpose_matrix)$values) # type of $values</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(eigen(transpose_matrix)$vectors) # type of $vectors</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
 </div>
+<div id="question-2" class="section level3">
+<h3>Question 2:</h3>
+<pre class="r"><code>my_matrix &lt;- matrix(data=runif(16),nrow=4) # creating my_matrix
+print(my_matrix)</code></pre>
+<pre><code>##           [,1]      [,2]      [,3]       [,4]
+## [1,] 0.2273021 0.8700357 0.9457997 0.23094772
+## [2,] 0.2896987 0.7866773 0.5433780 0.28132805
+## [3,] 0.9841563 0.9886634 0.2929972 0.07325231
+## [4,] 0.3819385 0.9696800 0.7914918 0.27124610</code></pre>
+<pre class="r"><code>my_logical &lt;- runif(100)&lt;0.5 # creating my_logical
+print(my_logical)</code></pre>
+<pre><code>##   [1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+##  [13]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [25]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [37]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE
+##  [49]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE
+##  [61] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
+##  [85] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+##  [97] FALSE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>my_letters &lt;- sample(letters) # creating my_letters
+print(my_letters)</code></pre>
+<pre><code>##  [1] &quot;s&quot; &quot;d&quot; &quot;w&quot; &quot;f&quot; &quot;q&quot; &quot;j&quot; &quot;n&quot; &quot;v&quot; &quot;p&quot; &quot;o&quot; &quot;x&quot; &quot;m&quot; &quot;k&quot; &quot;z&quot; &quot;b&quot; &quot;u&quot; &quot;e&quot; &quot;l&quot; &quot;h&quot;
+## [20] &quot;a&quot; &quot;t&quot; &quot;c&quot; &quot;r&quot; &quot;y&quot; &quot;g&quot; &quot;i&quot;</code></pre>
+<pre class="r"><code>my_list &lt;- list(my_matrix,my_logical,my_letters) # creating my_list
+print(my_list)</code></pre>
+<pre><code>## [[1]]
+##           [,1]      [,2]      [,3]       [,4]
+## [1,] 0.2273021 0.8700357 0.9457997 0.23094772
+## [2,] 0.2896987 0.7866773 0.5433780 0.28132805
+## [3,] 0.9841563 0.9886634 0.2929972 0.07325231
+## [4,] 0.3819385 0.9696800 0.7914918 0.27124610
+## 
+## [[2]]
+##   [1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+##  [13]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [25]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [37]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE
+##  [49]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE
+##  [61] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE
+##  [85] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+##  [97] FALSE  TRUE  TRUE FALSE
+## 
+## [[3]]
+##  [1] &quot;s&quot; &quot;d&quot; &quot;w&quot; &quot;f&quot; &quot;q&quot; &quot;j&quot; &quot;n&quot; &quot;v&quot; &quot;p&quot; &quot;o&quot; &quot;x&quot; &quot;m&quot; &quot;k&quot; &quot;z&quot; &quot;b&quot; &quot;u&quot; &quot;e&quot; &quot;l&quot; &quot;h&quot;
+## [20] &quot;a&quot; &quot;t&quot; &quot;c&quot; &quot;r&quot; &quot;y&quot; &quot;g&quot; &quot;i&quot;</code></pre>
+<pre class="r"><code>new_list &lt;- list(my_matrix[2,2],my_logical[2],my_letters[2]) # creating new list
+print(new_list)</code></pre>
+<pre><code>## [[1]]
+## [1] 0.7866773
+## 
+## [[2]]
+## [1] FALSE
+## 
+## [[3]]
+## [1] &quot;d&quot;</code></pre>
+<pre class="r"><code>typeof(new_list[[1]])</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(new_list[[2]])</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(new_list[[3]])</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>atomic_vec &lt;- c(new_list[[1]], new_list[[2]], new_list[[3]])
+print(atomic_vec)</code></pre>
+<pre><code>## [1] &quot;0.786677304422483&quot; &quot;FALSE&quot;             &quot;d&quot;</code></pre>
+<pre class="r"><code>typeof(atomic_vec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
 </div>
-<div id="homework-2" class="section level3">
-<h3>Homework #2:</h3>
-<div id="click-here-for-homework-2" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_2.html">Click
-here</a> for Homework #2</h5>
-</div>
-</div>
-<div id="homework-3" class="section level3">
-<h3>Homework #3:</h3>
-<div id="click-here-for-homework-3" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_3.html">Click
-here</a> for Homework #3</h5>
-</div>
-</div>
-<div id="homework-4" class="section level3">
-<h3>Homework #4:</h3>
-<div id="click-here-for-homework-4" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_4.html">Click
-here</a> for Homework #4</h5>
-</div>
-</div>
-<div id="homework-5" class="section level3">
-<h3>Homework #5:</h3>
-<div id="click-here-for-homework-5" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_5.html">Click
-here</a> for Homework #5</h5>
-</div>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<pre class="r"><code>my_unis &lt;- sample(0:10,size=26,replace=TRUE) # create my_unis
+print(my_unis)</code></pre>
+<pre><code>##  [1]  4  6  4  5  8  5 10  4  1  1  5  6  5  1  6  0  9  7  4  8 10 10 10  3  0
+## [26]  2</code></pre>
+<pre class="r"><code>my_letters &lt;- sample(LETTERS) # create my_letters
+print(my_letters)</code></pre>
+<pre><code>##  [1] &quot;S&quot; &quot;L&quot; &quot;F&quot; &quot;Z&quot; &quot;W&quot; &quot;C&quot; &quot;D&quot; &quot;J&quot; &quot;M&quot; &quot;G&quot; &quot;N&quot; &quot;U&quot; &quot;V&quot; &quot;O&quot; &quot;P&quot; &quot;K&quot; &quot;B&quot; &quot;X&quot; &quot;H&quot;
+## [20] &quot;Q&quot; &quot;I&quot; &quot;R&quot; &quot;E&quot; &quot;Y&quot; &quot;T&quot; &quot;A&quot;</code></pre>
+<pre class="r"><code>my_df &lt;- data.frame(my_unis,my_letters) # create dataframe
+print(my_df)</code></pre>
+<pre><code>##    my_unis my_letters
+## 1        4          S
+## 2        6          L
+## 3        4          F
+## 4        5          Z
+## 5        8          W
+## 6        5          C
+## 7       10          D
+## 8        4          J
+## 9        1          M
+## 10       1          G
+## 11       5          N
+## 12       6          U
+## 13       5          V
+## 14       1          O
+## 15       6          P
+## 16       0          K
+## 17       9          B
+## 18       7          X
+## 19       4          H
+## 20       8          Q
+## 21      10          I
+## 22      10          R
+## 23      10          E
+## 24       3          Y
+## 25       0          T
+## 26       2          A</code></pre>
+<pre class="r"><code>my_df[sample(1:nrow(my_df),size=4),1] = NA # replace 4 random rows of my_unis with NA
+print(my_df)</code></pre>
+<pre><code>##    my_unis my_letters
+## 1        4          S
+## 2        6          L
+## 3        4          F
+## 4        5          Z
+## 5        8          W
+## 6        5          C
+## 7       NA          D
+## 8       NA          J
+## 9        1          M
+## 10       1          G
+## 11       5          N
+## 12       6          U
+## 13       5          V
+## 14       1          O
+## 15       6          P
+## 16       0          K
+## 17       9          B
+## 18      NA          X
+## 19       4          H
+## 20      NA          Q
+## 21      10          I
+## 22      10          R
+## 23      10          E
+## 24       3          Y
+## 25       0          T
+## 26       2          A</code></pre>
+<pre class="r"><code>which(is.na(my_df$my_unis)) # which rows in my_unis have missing values</code></pre>
+<pre><code>## [1]  7  8 18 20</code></pre>
+<pre class="r"><code>new_df &lt;- arrange(my_df,my_letters) # rearrange the dataframe alphabetically
+print(new_df)</code></pre>
+<pre><code>##    my_unis my_letters
+## 1        2          A
+## 2        9          B
+## 3        5          C
+## 4       NA          D
+## 5       10          E
+## 6        4          F
+## 7        1          G
+## 8        4          H
+## 9       10          I
+## 10      NA          J
+## 11       0          K
+## 12       6          L
+## 13       1          M
+## 14       5          N
+## 15       1          O
+## 16       6          P
+## 17      NA          Q
+## 18      10          R
+## 19       4          S
+## 20       0          T
+## 21       6          U
+## 22       5          V
+## 23       8          W
+## 24      NA          X
+## 25       3          Y
+## 26       5          Z</code></pre>
+<pre class="r"><code>mean(new_df$my_unis,na.rm=TRUE) # calculate the mean for the first variable after removing NAs</code></pre>
+<pre><code>## [1] 4.772727</code></pre>
 </div>
 
 
