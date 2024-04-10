@@ -1,0 +1,72 @@
+---
+title: "Homework_8"
+author: "Kyle Grasso"
+date: "2024-04-10"
+output: html_document
+---
+### Question 1:
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dplyr)
+library(datasets)
+str(iris)
+```
+##### There are 150 observations and 5 variables in the iris dataset.
+
+### Question 2:
+```{r, message=FALSE, warning=FALSE}
+iris1 <- filter(iris, Species != "setosa" & Sepal.Length > 6 & Sepal.Width > 2.5)
+str(iris1)
+```
+##### There are now only 56 observations and 5 variables in this updated dataset
+
+### Question 3:
+```{r, message=FALSE, warning=FALSE}
+iris2 <- select (iris1, Species, Sepal.Length, Sepal.Width)
+str(iris2)
+```
+##### There are now 56 observations, but only the 3 variables that we selected.
+
+### Question 4:
+```{r, message=FALSE, warning=FALSE}
+iris3 <- arrange(iris2, by = desc(Sepal.Length))
+head(iris3)
+```
+
+### Question 5:
+```{r, message=FALSE, warning=FALSE}
+iris4 <- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
+str(iris4)
+```
+##### There are now 56 observations and 4 variables because we just added Sepal.Area as a variable.
+
+### Question 6:
+```{r, message=FALSE, warning=FALSE}
+iris5 <- summarize(iris4, MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+print(iris5)
+```
+
+### Question 7:
+```{r, message=FALSE, warning=FALSE}
+iris6 <- iris4 %>% group_by(Species) %>% summarize(MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+print(iris6)
+```
+
+### Question 8:
+```{r, message=FALSE, warning=FALSE}
+irisFinal <- iris %>% 
+  filter(Species != "setosa" & Sepal.Length > 6 & Sepal.Width > 2.5) %>% 
+  select (Species, Sepal.Length, Sepal.Width) %>%
+  arrange(by = desc(Sepal.Length)) %>%
+  mutate(Sepal.Area = Sepal.Length*Sepal.Width) %>%
+  group_by(Species) %>% 
+  summarize(MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+
+print(irisFinal)
+```
+
+### Question 9:
+```{r, message=FALSE, warning=FALSE}
+irisLonger <- iris %>% pivot_longer(cols=c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), names_to = "Measure", values_to = "Value")
+head(irisLonger)
+```

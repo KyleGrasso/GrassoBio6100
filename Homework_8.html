@@ -11,9 +11,9 @@
 
 <meta name="author" content="Kyle Grasso" />
 
-<meta name="date" content="2024-01-24" />
+<meta name="date" content="2024-04-10" />
 
-<title>Kyle Grasso’s Bio 6100 Portfolio</title>
+<title>Homework_8</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,82 +350,130 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Kyle Grasso’s Bio 6100 Portfolio</h1>
+<h1 class="title toc-ignore">Homework_8</h1>
 <h4 class="author">Kyle Grasso</h4>
-<h4 class="date">2024-01-24</h4>
+<h4 class="date">2024-04-10</h4>
 
 </div>
 
 
-<div id="purpose" class="section level3">
-<h3>Purpose:</h3>
-<div id="this-site-will-serve-as-kyle-grassos-bio-6100-portfolio-for-spring-2024." class="section level5">
-<h5>This site will serve as Kyle Grasso’s Bio 6100 Portfolio for Spring
-2024.</h5>
+<div id="question-1" class="section level3">
+<h3>Question 1:</h3>
+<pre class="r"><code>library(tidyverse)
+library(dplyr)
+library(datasets)
+str(iris)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div id="there-are-150-observations-and-5-variables-in-the-iris-dataset." class="section level5">
+<h5>There are 150 observations and 5 variables in the iris dataset.</h5>
 </div>
 </div>
-<div id="homework-2" class="section level3">
-<h3>Homework #2:</h3>
-<div id="click-here-for-homework-2" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_2.html">Click
-here</a> for Homework #2</h5>
+<div id="question-2" class="section level3">
+<h3>Question 2:</h3>
+<pre class="r"><code>iris1 &lt;- filter(iris, Species != &quot;setosa&quot; &amp; Sepal.Length &gt; 6 &amp; Sepal.Width &gt; 2.5)
+str(iris1)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    56 obs. of  5 variables:
+##  $ Sepal.Length: num  7 6.4 6.9 6.5 6.3 6.6 6.1 6.7 6.1 6.1 ...
+##  $ Sepal.Width : num  3.2 3.2 3.1 2.8 3.3 2.9 2.9 3.1 2.8 2.8 ...
+##  $ Petal.Length: num  4.7 4.5 4.9 4.6 4.7 4.6 4.7 4.4 4 4.7 ...
+##  $ Petal.Width : num  1.4 1.5 1.5 1.5 1.6 1.3 1.4 1.4 1.3 1.2 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+<div id="there-are-now-only-56-observations-and-5-variables-in-this-updated-dataset" class="section level5">
+<h5>There are now only 56 observations and 5 variables in this updated
+dataset</h5>
 </div>
 </div>
-<div id="homework-3" class="section level3">
-<h3>Homework #3:</h3>
-<div id="click-here-for-homework-3" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_3.html">Click
-here</a> for Homework #3</h5>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<pre class="r"><code>iris2 &lt;- select (iris1, Species, Sepal.Length, Sepal.Width)
+str(iris2)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    56 obs. of  3 variables:
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ Sepal.Length: num  7 6.4 6.9 6.5 6.3 6.6 6.1 6.7 6.1 6.1 ...
+##  $ Sepal.Width : num  3.2 3.2 3.1 2.8 3.3 2.9 2.9 3.1 2.8 2.8 ...</code></pre>
+<div id="there-are-now-56-observations-but-only-the-3-variables-that-we-selected." class="section level5">
+<h5>There are now 56 observations, but only the 3 variables that we
+selected.</h5>
 </div>
 </div>
-<div id="homework-4" class="section level3">
-<h3>Homework #4:</h3>
-<div id="click-here-for-homework-4" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_4.html">Click
-here</a> for Homework #4</h5>
+<div id="question-4" class="section level3">
+<h3>Question 4:</h3>
+<pre class="r"><code>iris3 &lt;- arrange(iris2, by = desc(Sepal.Length))
+head(iris3)</code></pre>
+<pre><code>##     Species Sepal.Length Sepal.Width
+## 1 virginica          7.9         3.8
+## 2 virginica          7.7         3.8
+## 3 virginica          7.7         2.6
+## 4 virginica          7.7         2.8
+## 5 virginica          7.7         3.0
+## 6 virginica          7.6         3.0</code></pre>
+</div>
+<div id="question-5" class="section level3">
+<h3>Question 5:</h3>
+<pre class="r"><code>iris4 &lt;- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
+str(iris4)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    56 obs. of  4 variables:
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ Sepal.Length: num  7.9 7.7 7.7 7.7 7.7 7.6 7.4 7.3 7.2 7.2 ...
+##  $ Sepal.Width : num  3.8 3.8 2.6 2.8 3 3 2.8 2.9 3.6 3.2 ...
+##  $ Sepal.Area  : num  30 29.3 20 21.6 23.1 ...</code></pre>
+<div id="there-are-now-56-observations-and-4-variables-because-we-just-added-sepal.area-as-a-variable." class="section level5">
+<h5>There are now 56 observations and 4 variables because we just added
+Sepal.Area as a variable.</h5>
 </div>
 </div>
-<div id="homework-5" class="section level3">
-<h3>Homework #5:</h3>
-<div id="click-here-for-homework-5" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_5.html">Click
-here</a> for Homework #5</h5>
+<div id="question-6" class="section level3">
+<h3>Question 6:</h3>
+<pre class="r"><code>iris5 &lt;- summarize(iris4, MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+print(iris5)</code></pre>
+<pre><code>##   MeanSepalLength MeanSepalWidth SampleSize
+## 1        6.698214       3.041071         56</code></pre>
 </div>
+<div id="question-7" class="section level3">
+<h3>Question 7:</h3>
+<pre class="r"><code>iris6 &lt;- iris4 %&gt;% group_by(Species) %&gt;% summarize(MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+print(iris6)</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   Species    MeanSepalLength MeanSepalWidth SampleSize
+##   &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;      &lt;int&gt;
+## 1 versicolor            6.48           2.99         17
+## 2 virginica             6.79           3.06         39</code></pre>
 </div>
-<div id="homework-6" class="section level3">
-<h3>Homework #6:</h3>
-<div id="click-here-for-homework-6" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_6.html">Click
-here</a> for Homework #6</h5>
+<div id="question-8" class="section level3">
+<h3>Question 8:</h3>
+<pre class="r"><code>irisFinal &lt;- iris %&gt;% 
+  filter(Species != &quot;setosa&quot; &amp; Sepal.Length &gt; 6 &amp; Sepal.Width &gt; 2.5) %&gt;% 
+  select (Species, Sepal.Length, Sepal.Width) %&gt;%
+  arrange(by = desc(Sepal.Length)) %&gt;%
+  mutate(Sepal.Area = Sepal.Length*Sepal.Width) %&gt;%
+  group_by(Species) %&gt;% 
+  summarize(MeanSepalLength = mean(Sepal.Length), MeanSepalWidth = mean(Sepal.Width), SampleSize = n())
+
+print(irisFinal)</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   Species    MeanSepalLength MeanSepalWidth SampleSize
+##   &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;      &lt;int&gt;
+## 1 versicolor            6.48           2.99         17
+## 2 virginica             6.79           3.06         39</code></pre>
 </div>
-</div>
-<div id="homework-7" class="section level3">
-<h3>Homework #7:</h3>
-<div id="click-here-for-homework-7" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_7.html">Click
-here</a> for Homework #7</h5>
-</div>
-</div>
-<div id="homework-8" class="section level3">
-<h3>Homework #8:</h3>
-<div id="click-here-for-homework-8" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_8.html">Click
-here</a> for Homework #8</h5>
-</div>
-</div>
-<div id="homework-9" class="section level3">
-<h3>Homework #9:</h3>
-<div id="click-here-for-homework-9-in-progress" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_9.html">Click
-here</a> for Homework #9 (In progress)</h5>
-</div>
-</div>
-<div id="homework-10" class="section level3">
-<h3>Homework #10:</h3>
-<div id="click-here-for-homework-10-in-progress" class="section level5">
-<h5><a href="https://kylegrasso.github.io/GrassoBio6100/Homework_10.html">Click
-here</a> for Homework #10 (In progress)</h5>
-</div>
+<div id="question-9" class="section level3">
+<h3>Question 9:</h3>
+<pre class="r"><code>irisLonger &lt;- iris %&gt;% pivot_longer(cols=c(Sepal.Length,Sepal.Width,Petal.Length,Petal.Width), names_to = &quot;Measure&quot;, values_to = &quot;Value&quot;)
+head(irisLonger)</code></pre>
+<pre><code>## # A tibble: 6 × 3
+##   Species Measure      Value
+##   &lt;fct&gt;   &lt;chr&gt;        &lt;dbl&gt;
+## 1 setosa  Sepal.Length   5.1
+## 2 setosa  Sepal.Width    3.5
+## 3 setosa  Petal.Length   1.4
+## 4 setosa  Petal.Width    0.2
+## 5 setosa  Sepal.Length   4.9
+## 6 setosa  Sepal.Width    3</code></pre>
 </div>
 
 

@@ -105,7 +105,7 @@ pSpecial + statSpecial
 ### Now redo this process using real data
 ##### I used the Bombus Bumblebee Seasonal Variation data where samples were collected to assay viruses (DWV and BQCV) and Nosema from around 300 bumblebees of various species from 5 sites at 4 different time points
 ```{r, message=FALSE, warning=FALSE}
-bee <- read.csv("Homework_6_Data.csv",sep=",",comment.char='#')
+bee <- read.csv("BeeData.csv",sep=",",comment.char='#')
 View(bee) # view in new tab - make sure to use capital V
 bee <- na.omit(bee) # omit the rows that contain an NA
 str(bee)
