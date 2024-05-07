@@ -1,0 +1,77 @@
+---
+title: "Homework_9"
+author: "Kyle Grasso"
+date: "2024-03-27"
+output: html_document
+---
+```{r, message=FALSE, warning=FALSE,echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(datasets)
+```
+### Question 1:
+##### Creating my functions
+```{r, message=FALSE, warning=FALSE}
+#############################
+# FUNCTION: createHatchData()
+# This function creates my hatch time dataset
+
+createHatchData <- function(nGroup = 3, nName = c("Hot","Moderate", "Cool"), nSize = c(20,20,20), nMean = c(16,21,26),nSD = c(1.25,1.1,1.1), ID = 1:(sum(nSize))) {
+  Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+                 rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+                 rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+EggHatchData <- data.frame(ID,Temperature,Hatch_time)
+return(EggHatchData)
+}
+
+###########################
+# FUNCTION: EggHatchANOVA()
+# This function performs an ANOVA on my EggHatchData using the createHatchData() function as its input
+
+EggHatchANOVA <- function(x=createHatchData()){
+  EggHatchAOV <- aov(Hatch_time~Temperature,data=x)
+  print(summary(EggHatchAOV))
+  z <- summary(EggHatchAOV)
+  list(Fval=unlist(z)[7],probF=unlist(z)[9])
+}
+
+###########################
+# FUNCTION: EggHatchPlot()
+# This function plots a box and whisker plot using the createHatchData() function as its input
+
+EggHatchPlot <- function(x=createHatchData()){
+  ggplot(data=x,aes(x=Temperature,y=Hatch_time,fill=Temperature)) + geom_boxplot() + scale_fill_manual(values= c("blue","red","green"))
+}
+```
+
+##### Running my functions
+```{r, message=FALSE, warning=FALSE}
+createHatchData()
+EggHatchANOVA()
+EggHatchPlot()
+```
+
+### Question 2:
+Here I will modify my plotHatchData() function by changing the box and whisker plot to a violin plot as well as plotting an additional output graph: the density plot.
+```{r, message=FALSE, warning=FALSE}
+###########################
+# FUNCTION: EggHatchPlot2()
+# This function plots a box and whisker plot, jitter plot, and density plot using the createHatchData() function as its input
+
+EggHatchPlot2 <- function(x=createHatchData()){
+  boxplot <- ggplot(data=x,aes(x=Temperature,y=Hatch_time,fill=Temperature)) + geom_violin() + scale_fill_manual(values= c("blue","red","green"))
+  
+  density <- ggplot(data=x,aes(Hatch_time,fill=Temperature)) + geom_density() + scale_fill_manual(values= c(Cool="blue", Hot="red", Moderate = "green"))
+  
+  print(boxplot)
+  print(density)
+}
+```
+
+##### Running my functions using my newly modified EggHatchPlot2() function
+```{r, message=FALSE, warning=FALSE}
+createHatchData()
+EggHatchANOVA()
+EggHatchPlot2()
+```

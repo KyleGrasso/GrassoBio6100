@@ -1,0 +1,112 @@
+---
+title: "Homework_10"
+author: "Kyle Grasso"
+date: "2024-04-03"
+output: html_document
+---
+```{r, message=FALSE, warning=FALSE,echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(datasets)
+```
+
+### Question 1:
+```{r, message=FALSE, warning=FALSE}
+# create function
+count_zeros <- function(x){ 
+  counter <- 0
+  for (i in x) {
+    if (i == 0) {
+      counter <- counter + 1
+    }
+  }
+  return(counter) 
+} 
+
+# test function out
+vector <- c(0,3,4,5,0,3,4,8,0,9,8)
+count_zeros(x=vector)
+```
+
+### Question 2:
+```{r, message=FALSE, warning=FALSE}
+# same thing but with subsetting
+count_zeros2 <- function(x) {
+  return(length(x[x==0]))
+}
+
+# test function out
+vector <- c(0,3,4,5,0,3,4,8,0,9,8)
+count_zeros2(x=vector)
+```
+
+### Question 3:
+```{r, message=FALSE, warning=FALSE}
+# create function
+make_matrix <- function(rows,columns) {
+  result <- matrix(NA, nrow = rows, ncol = columns)
+  for (i in 1:nrow(result)) {
+    for (j in 1:ncol(result)) {
+      result[i,j] <- i*j
+    }
+  }
+  return(result)
+}
+
+# test function out
+make_matrix(6,7)
+```
+
+### Question 4a:
+```{r, message=FALSE, warning=FALSE}
+nGroup <- 3 # number of groups
+nName <- c("Group1","Group2", "Group3") # names of groups
+nSize <- c(30,30,30) # number of observations
+nMean <- c(20,40,60) # mean of each group
+
+response <- c(rnorm(n=nSize[1],mean=nMean[1]),
+            rnorm(n=nSize[2],mean=nMean[2]),
+            rnorm(n=nSize[3],mean=nMean[3]))
+groups <- rep(nName,nSize)
+my_data <- data.frame(groups,response)
+my_data
+```
+
+### Question 4b:
+```{r, message=FALSE, warning=FALSE}
+shuffleMeans <- function(data=my_data){
+  shuffled <- sample(data$response)
+  data$shuffled <- shuffled
+  result <- c(mean(shuffled[data$groups=="Group1"]),mean(shuffled[data$groups=="Group2"]),mean(shuffled[data$groups=="Group3"]))
+  return(result)
+}
+
+shuffleMeans()
+```
+
+### Question 4c:
+```{r, message=FALSE, warning=FALSE}
+data100replicates <- data.frame(Replicate = 1:100, Group1 = 100, Group2 = 100, Group3 = 100)
+
+for (i in 1:100){
+  new_means <- shuffleMeans(my_data)
+  data100replicates[i, 2:4] <- new_means
+}
+print(data100replicates)
+```
+
+### Question 4d
+```{r, message=FALSE, warning=FALSE}
+# plot for group 1
+qplot(data=data100replicates,x=Group1,geom="histogram") +
+  labs(x = "Mean", y = "Frequency", title = "Group 1")
+
+# plot for group 2
+qplot(data=data100replicates,x=Group2,geom="histogram") +
+  labs(x = "Mean", y = "Frequency", title = "Group 2")
+
+# plot for group 3
+qplot(data=data100replicates,x=Group3,geom="histogram") +
+  labs(x = "Mean", y = "Frequency", title = "Group 3")
+```
+The distributions of the reshuffled means look quite similar across groups. The distributions of the original means looked quite different across groups. This makes sense because we reshuffled the data across groups, which reduced the differences in our response that we originally saw between the groups.

@@ -1,0 +1,138 @@
+---
+title: "Homework_7"
+author: "Kyle Grasso"
+date: "2024-02-28"
+output: html_document
+---
+```{r, message=FALSE, warning=FALSE,echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(datasets)
+```
+### Question 1:
+I will use a study where frog eggs of one specific species were taken from a pond and raised in containers with three different temperature groups (Hot = 25°C, Moderate = 19°C, Cool = 13°C). They hypothesized that the eggs of this species hatch fastest in warmer water and slowest in colder water. The study was interested in whether there were differences in hatching time (days) across the three different temperature treatments.
+
+### Question 2:
+Here I specify reasonable sample sizes, means, and standard deviations for each temperature treatment if their hypothesis was true. The sample size of 20 was chosen so that they had enough replicates for each treatment. The means and standard deviations were chosen based on the expected result that the eggs hatch fastest in warmer water. 
+
+Hot: Sample Size = 20 eggs, Mean = 16 days, Standard Deviation = 1.25 days  
+Moderate: Sample Size = 20 eggs, Mean = 21 days, Standard Deviation = 1.1 days  
+Cool: Sample Size = 20 eggs, Mean = 26 days, Standard Deviation = 1.1 days  
+
+### Question 3:
+```{r, message=FALSE, warning=FALSE}
+nGroup <- 3 # number of groups
+nName <- c("Hot","Moderate", "Cool") # names of groups
+nSize <- c(20,20,20) # number of observations in each group
+nMean <- c(16,21,26) # mean of each group
+nSD <- c(1.25,1.1,1.1) # standard deviation of each group
+
+ID <- 1:(sum(nSize)) # create id vector for each row
+Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+EggHatchData <- data.frame(ID,Temperature,Hatch_time)
+EggHatchData
+```
+
+### Question 4:
+```{r, message=FALSE, warning=FALSE}
+EggHatchModel <- aov(Hatch_time~Temperature,data=EggHatchData)
+print(EggHatchModel)
+summary(EggHatchModel)
+z <- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])
+
+ggplot(data=EggHatchData,aes(x=Temperature,y=Hatch_time,fill=Temperature)) + geom_boxplot() + scale_fill_manual(values= c("blue","red","green"))
+```
+Here we find that there is a significant difference in hatching times between temperature groups.
+
+### Question 5:
+First run: F = 467.53, p = 4.377084e-36  
+Second run: F = 398.39, p = 3.156156e-34  
+Third run: F = 344.89, p = 1.434916e-32
+
+After rerunning my analysis several times with different random numbers, we can see that we consistently get a very large F-value and a very small p-value, indicating that there is quite a significant difference regardless of the input data. We do see some variation within both values across the different runs, however we consistently come up with the same conclusion: there is a significant difference in hatching times between temperature groups.
+
+### Question 6
+Now I will begin adjusting the means to see how small the differences between the groups can be (the “effect size”) for me to still detect a significant difference. I will do this by making the means for each group closer and closer together, until we no longer get a significant result.
+
+Hot: mean = 18 days  
+Moderate: mean = 21 days  
+Cool: mean = 23 days
+```{r, message=FALSE, warning=FALSE}
+nGroup <- 3
+nName <- c("Hot","Moderate", "Cool")
+nSize <- c(20,20,20)
+nMean <- c(18,21,23) # changed the means
+nSD <- c(1.25,1.1,1.1)
+
+ID <- 1:(sum(nSize))
+Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+EggHatchData <- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel <- aov(Hatch_time~Temperature,data=EggHatchData)
+z <- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])
+```
+After adjusting the means once and rerunning my analysis several times, I still consistently find a significant difference, however not as large of a difference. Let's try adjusting the means again:
+
+Hot: mean = 20.5 days  
+Moderate: mean = 21 days  
+Cool: mean = 21.5 days
+```{r, message=FALSE, warning=FALSE}
+nGroup <- 3
+nName <- c("Hot","Moderate", "Cool")
+nSize <- c(20,20,20)
+nMean <- c(20.5,21,21.5) # changed the means again
+nSD <- c(1.25,1.1,1.1)
+
+ID <- 1:(sum(nSize))
+Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+EggHatchData <- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel <- aov(Hatch_time~Temperature,data=EggHatchData)
+z <- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])
+```
+My original means were:
+
+Hot: Mean = 16 days,
+Moderate: Mean = 21 days,
+Cool: Mean = 26 days
+
+My final adjusted means:
+Hot: mean = 20.5 days,
+Moderate: mean = 21 days,
+Cool: mean = 21.5 days
+
+After changing the means several times, changing them to where there is only a 0.5 day difference between them seems to be the smallest difference (the “effect size”) where I still consistently detect a significant difference (p < 0.05). It does result in the occasional insignificant result, however most of the time it produces a significant p-value.
+
+### Question 7:
+Now, using my original means, I will adjust the sample size to find the minimum sample size that I need to still detect a significant difference.
+```{r, message=FALSE, warning=FALSE}
+nGroup <- 3 # number of groups
+nName <- c("Hot","Moderate", "Cool") # names of groups
+nSize <- c(2,2,2) # number of observations in each group
+nMean <- c(16,21,26) # mean of each group
+nSD <- c(1.25,1.1,1.1) # standard deviation of each group
+
+ID <- 1:(sum(nSize)) # create id vector for each row
+Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+EggHatchData <- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel <- aov(Hatch_time~Temperature,data=EggHatchData)
+z <- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])
+```
+After changing the sample sizes several times, reducing my sample sizes all the way down to 2 for each group still results in significant differences. As I decreased the sample size, my p-value increased until it became closer and closer to 0.05. This indicates that this study did not need such a large sample size to find a significant difference, however large sample sizes can often increase the robustness of statistical tests, as it does in this instance.
+
+### Question 8
+See text in above sections.

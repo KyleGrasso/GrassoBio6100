@@ -11,9 +11,9 @@
 
 <meta name="author" content="Kyle Grasso" />
 
-<meta name="date" content="2024-01-24" />
+<meta name="date" content="2024-02-28" />
 
-<title>Kyle Grasso’s Bio 6100 Portfolio</title>
+<title>Homework_7</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,55 +350,271 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Kyle Grasso’s Bio 6100 Portfolio</h1>
+<h1 class="title toc-ignore">Homework_7</h1>
 <h4 class="author">Kyle Grasso</h4>
-<h4 class="date">2024-01-24</h4>
+<h4 class="date">2024-02-28</h4>
 
 </div>
 
 
-<div id="purpose" class="section level3">
-<h3>Purpose:</h3>
-<div id="this-site-will-serve-as-kyle-grassos-bio-6100-portfolio-for-spring-2024." class="section level5">
-<h5>This site will serve as Kyle Grasso’s Bio 6100 Portfolio for Spring
-2024.</h5>
+<div id="question-1" class="section level3">
+<h3>Question 1:</h3>
+<p>I will use a study where frog eggs of one specific species were taken
+from a pond and raised in containers with three different temperature
+groups (Hot = 25°C, Moderate = 19°C, Cool = 13°C). They hypothesized
+that the eggs of this species hatch fastest in warmer water and slowest
+in colder water. The study was interested in whether there were
+differences in hatching time (days) across the three different
+temperature treatments.</p>
 </div>
+<div id="question-2" class="section level3">
+<h3>Question 2:</h3>
+<p>Here I specify reasonable sample sizes, means, and standard
+deviations for each temperature treatment if their hypothesis was true.
+The sample size of 20 was chosen so that they had enough replicates for
+each treatment. The means and standard deviations were chosen based on
+the expected result that the eggs hatch fastest in warmer water.</p>
+<p>Hot: Sample Size = 20 eggs, Mean = 16 days, Standard Deviation = 1.25
+days<br />
+Moderate: Sample Size = 20 eggs, Mean = 21 days, Standard Deviation =
+1.1 days<br />
+Cool: Sample Size = 20 eggs, Mean = 26 days, Standard Deviation = 1.1
+days</p>
 </div>
-<div id="homework-2-click-here" class="section level3">
-<h3>Homework #2: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_2.html">Click
-here</a></h3>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<pre class="r"><code>nGroup &lt;- 3 # number of groups
+nName &lt;- c(&quot;Hot&quot;,&quot;Moderate&quot;, &quot;Cool&quot;) # names of groups
+nSize &lt;- c(20,20,20) # number of observations in each group
+nMean &lt;- c(16,21,26) # mean of each group
+nSD &lt;- c(1.25,1.1,1.1) # standard deviation of each group
+
+ID &lt;- 1:(sum(nSize)) # create id vector for each row
+Hatch_time &lt;- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature &lt;- rep(nName,nSize)
+EggHatchData &lt;- data.frame(ID,Temperature,Hatch_time)
+EggHatchData</code></pre>
+<pre><code>##    ID Temperature Hatch_time
+## 1   1         Hot   13.58011
+## 2   2         Hot   16.99417
+## 3   3         Hot   15.95344
+## 4   4         Hot   17.61499
+## 5   5         Hot   13.95419
+## 6   6         Hot   17.48118
+## 7   7         Hot   16.64046
+## 8   8         Hot   18.06704
+## 9   9         Hot   15.00726
+## 10 10         Hot   15.82201
+## 11 11         Hot   15.97374
+## 12 12         Hot   16.89383
+## 13 13         Hot   14.41048
+## 14 14         Hot   14.79469
+## 15 15         Hot   14.33632
+## 16 16         Hot   14.03215
+## 17 17         Hot   17.42459
+## 18 18         Hot   17.18788
+## 19 19         Hot   17.06558
+## 20 20         Hot   16.67917
+## 21 21    Moderate   23.14714
+## 22 22    Moderate   22.03043
+## 23 23    Moderate   20.03120
+## 24 24    Moderate   21.30403
+## 25 25    Moderate   22.62368
+## 26 26    Moderate   21.22625
+## 27 27    Moderate   21.89163
+## 28 28    Moderate   20.72427
+## 29 29    Moderate   21.95276
+## 30 30    Moderate   21.86992
+## 31 31    Moderate   20.05354
+## 32 32    Moderate   21.55825
+## 33 33    Moderate   21.23760
+## 34 34    Moderate   21.29300
+## 35 35    Moderate   21.23048
+## 36 36    Moderate   20.73168
+## 37 37    Moderate   19.81526
+## 38 38    Moderate   20.36147
+## 39 39    Moderate   22.20317
+## 40 40    Moderate   22.44482
+## 41 41        Cool   27.20292
+## 42 42        Cool   24.18945
+## 43 43        Cool   25.91652
+## 44 44        Cool   25.94768
+## 45 45        Cool   24.24685
+## 46 46        Cool   28.30268
+## 47 47        Cool   25.15520
+## 48 48        Cool   25.31582
+## 49 49        Cool   26.41716
+## 50 50        Cool   27.59574
+## 51 51        Cool   24.29964
+## 52 52        Cool   25.32316
+## 53 53        Cool   25.07848
+## 54 54        Cool   25.70093
+## 55 55        Cool   25.12378
+## 56 56        Cool   25.56388
+## 57 57        Cool   27.05987
+## 58 58        Cool   27.08247
+## 59 59        Cool   24.04286
+## 60 60        Cool   23.73452</code></pre>
 </div>
-<div id="homework-3-click-here" class="section level3">
-<h3>Homework #3: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_3.html">Click
-here</a></h3>
+<div id="question-4" class="section level3">
+<h3>Question 4:</h3>
+<pre class="r"><code>EggHatchModel &lt;- aov(Hatch_time~Temperature,data=EggHatchData)
+print(EggHatchModel)</code></pre>
+<pre><code>## Call:
+##    aov(formula = Hatch_time ~ Temperature, data = EggHatchData)
+## 
+## Terms:
+##                 Temperature Residuals
+## Sum of Squares     939.0816   85.0212
+## Deg. of Freedom           2        57
+## 
+## Residual standard error: 1.221311
+## Estimated effects may be unbalanced</code></pre>
+<pre class="r"><code>summary(EggHatchModel)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Temperature  2  939.1   469.5   314.8 &lt;2e-16 ***
+## Residuals   57   85.0     1.5                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>z &lt;- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])</code></pre>
+<pre><code>## $Fval
+## F value1 
+## 314.7901 
+## 
+## $probF
+##      Pr(&gt;F)1 
+## 1.573007e-31</code></pre>
+<pre class="r"><code>ggplot(data=EggHatchData,aes(x=Temperature,y=Hatch_time,fill=Temperature)) + geom_boxplot() + scale_fill_manual(values= c(&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;))</code></pre>
+<p><img src="data:image/png;base64,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" width="672" />
+Here we find that there is a significant difference in hatching times
+between temperature groups.</p>
 </div>
-<div id="homework-4-click-here" class="section level3">
-<h3>Homework #4: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_4.html">Click
-here</a></h3>
+<div id="question-5" class="section level3">
+<h3>Question 5:</h3>
+<p>First run: F = 467.53, p = 4.377084e-36<br />
+Second run: F = 398.39, p = 3.156156e-34<br />
+Third run: F = 344.89, p = 1.434916e-32</p>
+<p>After rerunning my analysis several times with different random
+numbers, we can see that we consistently get a very large F-value and a
+very small p-value, indicating that there is quite a significant
+difference regardless of the input data. We do see some variation within
+both values across the different runs, however we consistently come up
+with the same conclusion: there is a significant difference in hatching
+times between temperature groups.</p>
 </div>
-<div id="homework-5-click-here" class="section level3">
-<h3>Homework #5: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_5.html">Click
-here</a></h3>
+<div id="question-6" class="section level3">
+<h3>Question 6</h3>
+<p>Now I will begin adjusting the means to see how small the differences
+between the groups can be (the “effect size”) for me to still detect a
+significant difference. I will do this by making the means for each
+group closer and closer together, until we no longer get a significant
+result.</p>
+<p>Hot: mean = 18 days<br />
+Moderate: mean = 21 days<br />
+Cool: mean = 23 days</p>
+<pre class="r"><code>nGroup &lt;- 3
+nName &lt;- c(&quot;Hot&quot;,&quot;Moderate&quot;, &quot;Cool&quot;)
+nSize &lt;- c(20,20,20)
+nMean &lt;- c(18,21,23) # changed the means
+nSD &lt;- c(1.25,1.1,1.1)
+
+ID &lt;- 1:(sum(nSize))
+Hatch_time &lt;- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature &lt;- rep(nName,nSize)
+EggHatchData &lt;- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel &lt;- aov(Hatch_time~Temperature,data=EggHatchData)
+z &lt;- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])</code></pre>
+<pre><code>## $Fval
+## F value1 
+## 142.0062 
+## 
+## $probF
+##      Pr(&gt;F)1 
+## 7.219152e-23</code></pre>
+<p>After adjusting the means once and rerunning my analysis several
+times, I still consistently find a significant difference, however not
+as large of a difference. Let’s try adjusting the means again:</p>
+<p>Hot: mean = 20.5 days<br />
+Moderate: mean = 21 days<br />
+Cool: mean = 21.5 days</p>
+<pre class="r"><code>nGroup &lt;- 3
+nName &lt;- c(&quot;Hot&quot;,&quot;Moderate&quot;, &quot;Cool&quot;)
+nSize &lt;- c(20,20,20)
+nMean &lt;- c(20.5,21,21.5) # changed the means again
+nSD &lt;- c(1.25,1.1,1.1)
+
+ID &lt;- 1:(sum(nSize))
+Hatch_time &lt;- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature &lt;- rep(nName,nSize)
+EggHatchData &lt;- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel &lt;- aov(Hatch_time~Temperature,data=EggHatchData)
+z &lt;- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])</code></pre>
+<pre><code>## $Fval
+## F value1 
+## 1.501956 
+## 
+## $probF
+##   Pr(&gt;F)1 
+## 0.2313747</code></pre>
+<p>My original means were:</p>
+<p>Hot: Mean = 16 days, Moderate: Mean = 21 days, Cool: Mean = 26
+days</p>
+<p>My final adjusted means: Hot: mean = 20.5 days, Moderate: mean = 21
+days, Cool: mean = 21.5 days</p>
+<p>After changing the means several times, changing them to where there
+is only a 0.5 day difference between them seems to be the smallest
+difference (the “effect size”) where I still consistently detect a
+significant difference (p &lt; 0.05). It does result in the occasional
+insignificant result, however most of the time it produces a significant
+p-value.</p>
 </div>
-<div id="homework-6-click-here" class="section level3">
-<h3>Homework #6: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_6.html">Click
-here</a></h3>
+<div id="question-7" class="section level3">
+<h3>Question 7:</h3>
+<p>Now, using my original means, I will adjust the sample size to find
+the minimum sample size that I need to still detect a significant
+difference.</p>
+<pre class="r"><code>nGroup &lt;- 3 # number of groups
+nName &lt;- c(&quot;Hot&quot;,&quot;Moderate&quot;, &quot;Cool&quot;) # names of groups
+nSize &lt;- c(2,2,2) # number of observations in each group
+nMean &lt;- c(16,21,26) # mean of each group
+nSD &lt;- c(1.25,1.1,1.1) # standard deviation of each group
+
+ID &lt;- 1:(sum(nSize)) # create id vector for each row
+Hatch_time &lt;- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature &lt;- rep(nName,nSize)
+EggHatchData &lt;- data.frame(ID,Temperature,Hatch_time)
+EggHatchModel &lt;- aov(Hatch_time~Temperature,data=EggHatchData)
+z &lt;- summary(EggHatchModel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])</code></pre>
+<pre><code>## $Fval
+## F value1 
+## 216.6112 
+## 
+## $probF
+##      Pr(&gt;F)1 
+## 0.0005703216</code></pre>
+<p>After changing the sample sizes several times, reducing my sample
+sizes all the way down to 2 for each group still results in significant
+differences. As I decreased the sample size, my p-value increased until
+it became closer and closer to 0.05. This indicates that this study did
+not need such a large sample size to find a significant difference,
+however large sample sizes can often increase the robustness of
+statistical tests, as it does in this instance.</p>
 </div>
-<div id="homework-7-click-here" class="section level3">
-<h3>Homework #7: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_7.html">Click
-here</a></h3>
-</div>
-<div id="homework-8-click-here" class="section level3">
-<h3>Homework #8: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_8.html">Click
-here</a></h3>
-</div>
-<div id="homework-9-click-here" class="section level3">
-<h3>Homework #9: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_9.html">Click
-here</a></h3>
-</div>
-<div id="homework-10-click-here" class="section level3">
-<h3>Homework #10: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_10.html">Click
-here</a></h3>
+<div id="question-8" class="section level3">
+<h3>Question 8</h3>
+<p>See text in above sections.</p>
 </div>
 
 

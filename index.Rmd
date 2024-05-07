@@ -12,29 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Purpose:
 ##### This site will serve as Kyle Grasso's Bio 6100 Portfolio for Spring 2024.
 
-### Homework #2:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_2.html) for Homework #2
+### Homework #2: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_2.html)
 
-### Homework #3:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_3.html) for Homework #3
+### Homework #3: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_3.html)
 
-### Homework #4:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_4.html) for Homework #4
+### Homework #4: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_4.html)
 
-### Homework #5:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_5.html) for Homework #5
+### Homework #5: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_5.html)
 
-### Homework #6:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_6.html) for Homework #6
+### Homework #6: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_6.html)
 
-### Homework #7:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_7.html) for Homework #7 (In progress)
+### Homework #7: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_7.html)
 
-### Homework #8:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_8.html) for Homework #8
+### Homework #8: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_8.html)
 
-### Homework #9:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_9.html) for Homework #9 (In progress)
+### Homework #9: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_9.html)
 
-### Homework #10:
-##### [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_10.html) for Homework #10 (In progress)
+### Homework #10: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_10.html)
