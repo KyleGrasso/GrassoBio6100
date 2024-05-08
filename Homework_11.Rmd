@@ -1,0 +1,133 @@
+---
+title: "Homework_11"
+author: "Kyle Grasso"
+date: "2024-04-10"
+output: html_document
+---
+```{r, message=FALSE, warning=FALSE,echo = FALSE}
+library(tidyverse)
+library(dplyr)
+library(datasets)
+```
+
+### Question 1:
+Setting up file structure and preparing for barracudar.
+```{r, message=FALSE, warning=FALSE}
+setwd("C:/Users/doug/Desktop/GrassoBio6100/Homework_11")
+
+source("barracudar/AddFolder.R")
+source("barracudar/BuildFunction.R")
+source("barracudar/CreatePaddedLabel.R")
+source("barracudar/DataTableTemplate.R")
+source("barracudar/InitiateSeed.R")
+source("barracudar/MetaDataTemplate.R")
+source("barracudar/QBox.R")
+source("barracudar/QBub.R")
+source("barracudar/QCon1.R")
+source("barracudar/QCon2.R")
+source("barracudar/QContour.R")
+source("barracudar/QHist.R")
+source("barracudar/QLogis.R")
+source("barracudar/SetUpLog.R")
+source("barracudar/SourceBatch.R")
+```
+
+### Question 2:
+```{r, message=FALSE, warning=FALSE}
+filelist <- list.files("C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData")
+filelist # list of file names
+
+# use a for loop here
+filenames <- c()
+for (i in 1:8) {
+  setwd(paste0("C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData","/", filelist[i]))
+  filenames[i] <- list.files(pattern = "countdata")
+}
+
+filenames # list of file names.csv
+```
+
+### Question 3:
+Creating my functions
+```{r, message=FALSE, warning=FALSE}
+########################
+# FUNCTION: clean_data()
+# Description: cleans data of any empty/missing cases
+# Inputs: filepaths/names that need to be cleaned
+# Outputs: cleaned dataset
+years <- c(2015,2016,2017,2018,2019,2020,2021,2022)
+clean_data <- function(filelist, filenames) { 
+  for (i in 1:8) {
+    setwd(paste0("C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData/", filelist[i]))
+    raw_data <- read.csv(filenames[i], na.strings = c("","NA"))
+    clean_data <- raw_data[complete.cases(raw_data["scientificName"]), ] 
+    setwd("C:/Users/doug/Desktop/GrassoBio6100/Homework_11/CleanedData/")
+    write.csv(clean_data,paste0("CleanData_",years[i], ".csv"))
+  }
+}
+
+clean_data(filelist,filenames) # run my function
+clean_files <- list.files("C:/Users/doug/Desktop/GrassoBio6100/Homework_11/CleanedData/") # store these new cleaned files
+```
+
+```{r, message=FALSE, warning=FALSE}
+##########################
+#FUNCTION: extract_years()
+#Description: extracts the years from the file names
+#Inputs: clean_files
+#Outputs: years from the file names
+
+extract_years <- function(clean_files){
+  years <- str_extract(clean_files, pattern = "\\d{4}")
+  return(years)
+}
+extract_years(clean_files) # run my function
+```
+
+```{r, message=FALSE, warning=FALSE}
+################################
+#FUNCTION: calculate_abundance()
+#Description: calculates the abundance for each year
+#Inputs: clean_files
+#Outputs: abundance for each year
+calculate_abundance <- function(clean_files){
+  data <- read.csv(clean_files, header=TRUE)
+  abundance <- c()
+  abundance <- nrow(data)
+  print(abundance)
+}
+```
+
+```{r, message=FALSE, warning=FALSE}
+###############################
+#FUNCTION: calculate_richness()
+#Description: calculates species richness for each year
+#Inputs: clean_files
+#Outputs: species richness for each year
+
+
+calculate_richness <- function(clean_files){
+  data2 <- read.csv(clean_files, header=TRUE)
+  richness <- c()
+  richness <- length(unique(data2$scientificName))
+  print(richness)
+}
+```
+
+### Question 4:
+```{r, message=FALSE, warning=FALSE}
+# creating my initial empty data frame
+finaldf <- data.frame(File = rep(NULL,8), Year = rep(NULL,8), Abundance = rep(NULL,8), SpeciesRichness = rep(NULL,8))
+```
+
+### Question 5:
+Some of my work directories were acting funky when I wrote up my R Markdown file. However, below is the code that I used:
+```{r, message=FALSE, warning=FALSE,eval = FALSE}
+for (i in 1:8){
+ finaldf <- rbind(finaldf, list(File= clean_files[i],
+                       Year= extract_years(clean_files[i]),
+                       Abundance = calculate_abundance(clean_files[i]),
+                       SpeciesRichness= calculate_richness(clean_files[i])))
+}
+finaldf
+```

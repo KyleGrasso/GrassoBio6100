@@ -29,3 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Homework #9: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_9.html)
 
 ### Homework #10: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_10.html)
+
+### Homework #11: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_11.html)
+
+### Homework #12: [Click here](https://kylegrasso.github.io/GrassoBio6100/Homework_12.html) (In Progress)

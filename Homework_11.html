@@ -11,9 +11,9 @@
 
 <meta name="author" content="Kyle Grasso" />
 
-<meta name="date" content="2024-01-24" />
+<meta name="date" content="2024-04-10" />
 
-<title>Kyle Grasso’s Bio 6100 Portfolio</title>
+<title>Homework_11</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,63 +350,137 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Kyle Grasso’s Bio 6100 Portfolio</h1>
+<h1 class="title toc-ignore">Homework_11</h1>
 <h4 class="author">Kyle Grasso</h4>
-<h4 class="date">2024-01-24</h4>
+<h4 class="date">2024-04-10</h4>
 
 </div>
 
 
-<div id="purpose" class="section level3">
-<h3>Purpose:</h3>
-<div id="this-site-will-serve-as-kyle-grassos-bio-6100-portfolio-for-spring-2024." class="section level5">
-<h5>This site will serve as Kyle Grasso’s Bio 6100 Portfolio for Spring
-2024.</h5>
+<div id="question-1" class="section level3">
+<h3>Question 1:</h3>
+<p>Setting up file structure and preparing for barracudar.</p>
+<pre class="r"><code>setwd(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11&quot;)
+
+source(&quot;barracudar/AddFolder.R&quot;)
+source(&quot;barracudar/BuildFunction.R&quot;)
+source(&quot;barracudar/CreatePaddedLabel.R&quot;)
+source(&quot;barracudar/DataTableTemplate.R&quot;)
+source(&quot;barracudar/InitiateSeed.R&quot;)
+source(&quot;barracudar/MetaDataTemplate.R&quot;)
+source(&quot;barracudar/QBox.R&quot;)
+source(&quot;barracudar/QBub.R&quot;)
+source(&quot;barracudar/QCon1.R&quot;)
+source(&quot;barracudar/QCon2.R&quot;)
+source(&quot;barracudar/QContour.R&quot;)
+source(&quot;barracudar/QHist.R&quot;)
+source(&quot;barracudar/QLogis.R&quot;)
+source(&quot;barracudar/SetUpLog.R&quot;)
+source(&quot;barracudar/SourceBatch.R&quot;)</code></pre>
 </div>
+<div id="question-2" class="section level3">
+<h3>Question 2:</h3>
+<pre class="r"><code>filelist &lt;- list.files(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData&quot;)
+filelist # list of file names</code></pre>
+<pre><code>## [1] &quot;NEON.D01.BART.DP1.10003.001.2015-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [2] &quot;NEON.D01.BART.DP1.10003.001.2016-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [3] &quot;NEON.D01.BART.DP1.10003.001.2017-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [4] &quot;NEON.D01.BART.DP1.10003.001.2018-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [5] &quot;NEON.D01.BART.DP1.10003.001.2019-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [6] &quot;NEON.D01.BART.DP1.10003.001.2020-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [7] &quot;NEON.D01.BART.DP1.10003.001.2021-06.basic.20240127T000425Z.RELEASE-2024&quot;
+## [8] &quot;NEON.D01.BART.DP1.10003.001.2022-06.basic.20240127T000425Z.RELEASE-2024&quot;</code></pre>
+<pre class="r"><code># use a for loop here
+filenames &lt;- c()
+for (i in 1:8) {
+  setwd(paste0(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData&quot;,&quot;/&quot;, filelist[i]))
+  filenames[i] &lt;- list.files(pattern = &quot;countdata&quot;)
+}
+
+filenames # list of file names.csv</code></pre>
+<pre><code>## [1] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2015-06.basic.20231226T232626Z.csv&quot;
+## [2] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2016-06.basic.20231227T013428Z.csv&quot;
+## [3] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2017-06.basic.20231227T094709Z.csv&quot;
+## [4] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2018-06.basic.20231228T172744Z.csv&quot;
+## [5] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2019-06.basic.20231227T184129Z.csv&quot;
+## [6] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2020-06.basic.20231227T224944Z.csv&quot;
+## [7] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2021-06.basic.20231228T010546Z.csv&quot;
+## [8] &quot;NEON.D01.BART.DP1.10003.001.brd_countdata.2022-06.basic.20231229T053256Z.csv&quot;</code></pre>
 </div>
-<div id="homework-2-click-here" class="section level3">
-<h3>Homework #2: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_2.html">Click
-here</a></h3>
+<div id="question-3" class="section level3">
+<h3>Question 3:</h3>
+<p>Creating my functions</p>
+<pre class="r"><code>########################
+# FUNCTION: clean_data()
+# Description: cleans data of any empty/missing cases
+# Inputs: filepaths/names that need to be cleaned
+# Outputs: cleaned dataset
+years &lt;- c(2015,2016,2017,2018,2019,2020,2021,2022)
+clean_data &lt;- function(filelist, filenames) { 
+  for (i in 1:8) {
+    setwd(paste0(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11/OriginalData/&quot;, filelist[i]))
+    raw_data &lt;- read.csv(filenames[i], na.strings = c(&quot;&quot;,&quot;NA&quot;))
+    clean_data &lt;- raw_data[complete.cases(raw_data[&quot;scientificName&quot;]), ] 
+    setwd(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11/CleanedData/&quot;)
+    write.csv(clean_data,paste0(&quot;CleanData_&quot;,years[i], &quot;.csv&quot;))
+  }
+}
+
+clean_data(filelist,filenames) # run my function
+clean_files &lt;- list.files(&quot;C:/Users/doug/Desktop/GrassoBio6100/Homework_11/CleanedData/&quot;) # store these new cleaned files</code></pre>
+<pre class="r"><code>##########################
+#FUNCTION: extract_years()
+#Description: extracts the years from the file names
+#Inputs: clean_files
+#Outputs: years from the file names
+
+extract_years &lt;- function(clean_files){
+  years &lt;- str_extract(clean_files, pattern = &quot;\\d{4}&quot;)
+  return(years)
+}
+extract_years(clean_files) # run my function</code></pre>
+<pre><code>## [1] &quot;2015&quot; &quot;2016&quot; &quot;2017&quot; &quot;2018&quot; &quot;2019&quot; &quot;2020&quot; &quot;2021&quot; &quot;2022&quot;</code></pre>
+<pre class="r"><code>################################
+#FUNCTION: calculate_abundance()
+#Description: calculates the abundance for each year
+#Inputs: clean_files
+#Outputs: abundance for each year
+calculate_abundance &lt;- function(clean_files){
+  data &lt;- read.csv(clean_files, header=TRUE)
+  abundance &lt;- c()
+  abundance &lt;- nrow(data)
+  print(abundance)
+}</code></pre>
+<pre class="r"><code>###############################
+#FUNCTION: calculate_richness()
+#Description: calculates species richness for each year
+#Inputs: clean_files
+#Outputs: species richness for each year
+
+
+calculate_richness &lt;- function(clean_files){
+  data2 &lt;- read.csv(clean_files, header=TRUE)
+  richness &lt;- c()
+  richness &lt;- length(unique(data2$scientificName))
+  print(richness)
+}</code></pre>
 </div>
-<div id="homework-3-click-here" class="section level3">
-<h3>Homework #3: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_3.html">Click
-here</a></h3>
+<div id="question-4" class="section level3">
+<h3>Question 4:</h3>
+<pre class="r"><code># creating my initial empty data frame
+finaldf &lt;- data.frame(File = rep(NULL,8), Year = rep(NULL,8), Abundance = rep(NULL,8), SpeciesRichness = rep(NULL,8))</code></pre>
 </div>
-<div id="homework-4-click-here" class="section level3">
-<h3>Homework #4: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_4.html">Click
-here</a></h3>
-</div>
-<div id="homework-5-click-here" class="section level3">
-<h3>Homework #5: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_5.html">Click
-here</a></h3>
-</div>
-<div id="homework-6-click-here" class="section level3">
-<h3>Homework #6: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_6.html">Click
-here</a></h3>
-</div>
-<div id="homework-7-click-here" class="section level3">
-<h3>Homework #7: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_7.html">Click
-here</a></h3>
-</div>
-<div id="homework-8-click-here" class="section level3">
-<h3>Homework #8: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_8.html">Click
-here</a></h3>
-</div>
-<div id="homework-9-click-here" class="section level3">
-<h3>Homework #9: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_9.html">Click
-here</a></h3>
-</div>
-<div id="homework-10-click-here" class="section level3">
-<h3>Homework #10: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_10.html">Click
-here</a></h3>
-</div>
-<div id="homework-11-click-here" class="section level3">
-<h3>Homework #11: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_11.html">Click
-here</a></h3>
-</div>
-<div id="homework-12-click-here-in-progress" class="section level3">
-<h3>Homework #12: <a href="https://kylegrasso.github.io/GrassoBio6100/Homework_12.html">Click
-here</a> (In Progress)</h3>
+<div id="question-5" class="section level3">
+<h3>Question 5:</h3>
+<p>Some of my work directories were acting funky when I wrote up my R
+Markdown file. However, below is the code that I used:</p>
+<pre class="r"><code>for (i in 1:8){
+ finaldf &lt;- rbind(finaldf, list(File= clean_files[i],
+                       Year= extract_years(clean_files[i]),
+                       Abundance = calculate_abundance(clean_files[i]),
+                       SpeciesRichness= calculate_richness(clean_files[i])))
+}
+finaldf</code></pre>
 </div>
 
 
