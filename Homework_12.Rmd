@@ -1,0 +1,69 @@
+---
+title: "Homework_12"
+author: "Kyle Grasso"
+date: "2024-04-17"
+output: html_document
+---
+### Loading libraries
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(wesanderson)
+library(scales)
+library(patchwork)
+```
+
+### Assigning and looking at structure of my data
+I will focus on the Sepal.Length variable.
+```{r, message=FALSE, warning=FALSE}
+data <- iris
+str(data)
+```
+
+### Basic Box Plot of Sepal Length
+```{r, message=FALSE, warning=FALSE}
+ggplot(data) + aes(x=Sepal.Length,y=Species,fill=Species) +
+  geom_boxplot()
+```
+
+### Add formal title and axis labels to box plot
+```{r, message=FALSE, warning=FALSE}
+ggplot(data) + aes(x=Sepal.Length,y=Species,fill=Species) + geom_boxplot() + labs(title = "Boxplot", x = "Sepal Length (cm)", y="Plant Species") + theme(plot.title=element_text(hjust=0.5)) + theme(legend.position = "none")
+```
+
+### Add points, change theme, and create final box plot
+```{r, message=FALSE, warning=FALSE}
+my_colors <- c(wes_palettes$GrandBudapest2)
+
+p1 <- ggplot(data) + aes(x=Sepal.Length,y=Species,fill=Species) + geom_boxplot() + labs(title = "Boxplot", x = "Sepal Length (cm)", y="Plant Species") + theme(plot.title=element_text(hjust=0.5)) + geom_point(position=position_jitter(width=0.7,height=0.2),color="grey60",size=3) + theme(legend.position = "none") + scale_fill_manual(values = my_colors)
+
+p1
+```
+
+### Basic Density Plot of Sepal Length
+```{r, message=FALSE, warning=FALSE}
+ggplot(data) + aes(x=Sepal.Length,fill=Species) +
+  geom_density()
+```
+
+### Create final density plot
+```{r, message=FALSE, warning=FALSE}
+p2 <- ggplot(data) + aes(x=Sepal.Length,fill=Species) + geom_density() + labs(title = "Density Plot", x = "Sepal Length (cm)", y="Frequency") + theme(plot.title=element_text(hjust=0.5)) + scale_fill_manual(values = my_colors)
+
+p2
+```
+
+### Create final jitter plot
+```{r, message=FALSE, warning=FALSE}
+p3 <- ggplot(data) + aes(x=Species,y=Sepal.Length,color=Species) + geom_jitter() + labs(title = "Jitter Plot", x = "Plant Species", y="Sepal Length (cm)") + theme(plot.title=element_text(hjust=0.5))
+
+p3
+```
+
+### Combine all the plots into one final presentable plot
+```{r, message=FALSE, warning=FALSE}
+final_plot <- (p1|p2)/(p3)+plot_annotation(caption = "a. Boxplot of Sepal Length by Species
+b. Density Plot of Sepal Length by Species
+c. Jitter Plot of Sepal Length by Species", tag_levels = "a")
+
+final_plot
+```
